@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char ch, buffer[50];
+    int i = 0;
+
+    printf("Enter an expression: ");
+    
+    while ((ch = getchar()) != '\n') {
+
+        // Identifiers (alphabet or underscore start)
+        if (isalpha(ch) || ch == '_') {
+            i = 0;
+            buffer[i++] = ch;
+
+            // Continue for letters, digits, underscore
+            while (isalnum(ch = getchar()) || ch == '_') {
+                buffer[i++] = ch;
+            }
+
+            buffer[i] = '\0';
+            printf("Identifier: %s\n", buffer);
+            ungetc(ch, stdin);
+        }
+
+        // Constants (digits)
+        else if (isdigit(ch)) {
+            i = 0;
+            buffer[i++] = ch;
+
+            while (isdigit(ch = getchar())) {
+                buffer[i++] = ch;
+            }
+
+            buffer[i] = '\0';
+            printf("Constant: %s\n", buffer);
+            ungetc(ch, stdin);
+        }
+
+        // Operators
+        else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '=' ||
+                 ch == '<' || ch == '>' || ch == '%') {
+            printf("Operator: %c\n", ch);
+        }
+
+        // Ignore spaces
+        else if (ch == ' ') {
+            continue;
+        }
+
+        // Anything else is a symbol
+        else {
+            printf("Symbol: %c\n", ch);
+        }
+    }
+
+    return 0;
+}
