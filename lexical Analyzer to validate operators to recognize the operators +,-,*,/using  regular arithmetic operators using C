@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char op[10];
+
+    printf("Enter an operator: ");
+    scanf("%s", op);
+
+    // Check for single-character arithmetic operators
+    if (strcmp(op, "+") == 0)
+        printf("Valid Operator: +\n");
+    else if (strcmp(op, "-") == 0)
+        printf("Valid Operator: -\n");
+    else if (strcmp(op, "*") == 0)
+        printf("Valid Operator: *\n");
+    else if (strcmp(op, "/") == 0)
+        printf("Valid Operator: /\n");
+
+    else
+        printf("Invalid Operator!\n");
+
+    return 0;
+}
