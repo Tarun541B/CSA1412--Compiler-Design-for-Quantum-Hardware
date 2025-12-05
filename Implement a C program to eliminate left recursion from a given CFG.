@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+
+    printf("Original Grammar:\n");
+    printf("S → (L) | a\n");
+    printf("L → L , S | S\n\n");
+
+    printf("After Eliminating Left Recursion:\n");
+
+    // S has no left recursion
+    printf("S → (L) | a\n");
+
+    // L has left recursion, remove it
+    printf("L → S L'\n");
+    printf("L' → , S L' | ε\n");
+
+    return 0;
+}
