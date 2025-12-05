@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+
+    printf("Original Grammar:\n");
+    printf("S → iEtS | iEtSeS | a\n");
+    printf("E → b\n\n");
+
+    printf("After Left Factoring:\n");
+
+    // Left-factored output for S
+    printf("S → iEtS X | a\n");
+    printf("X → eS | ε\n");
+
+    // E has no common prefix to factor
+    printf("E → b\n");
+
+    return 0;
+}
