@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+
+    printf("Grammar:\n");
+    printf("S → AaAb | BbBa\n");
+    printf("A → ε\n");
+    printf("B → ε\n\n");
+
+    // FIRST sets based on given grammar
+
+    printf("FIRST(A) = { ε }\n");
+    printf("FIRST(B) = { ε }\n");
+
+    // For FIRST(S):
+    // S → AaAb  → A is ε, so first symbol is 'a'
+    // S → BbBa  → B is ε, so first symbol is 'b'
+
+    printf("FIRST(S) = { a , b }\n");
+
+    return 0;
+}
