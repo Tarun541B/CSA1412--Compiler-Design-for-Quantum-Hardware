@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+char input[100];
+int i = 0;
+
+// Function declarations
+void E();
+void Eprime();
+void T();
+void Tprime();
+void F();
+
+void error() {
+    printf("\nError: Invalid expression!\n");
+    exit(0);
+}
+
+void match(char c) {
+    if (input[i] == c)
+        i++;
+    else
+        error();
+}
+
+// E → T E'
+void E() {
+    T();
+    Eprime();
+}
+
+// E' → + T E' | ε
+void Eprime() {
+    if (input[i] == '+') {
+        match('+');
+        T();
+        Eprime();
+    }
+    // else epsilon (do nothing)
+}
+
+// T → F T'
+void T() {
+    F();
+    Tprime();
+}
+
+// T' → * F T' | ε
+void Tprime() {
+    if (input[i] == '*') {
+        match('*');
+        F();
+        Tprime();
+    }
+    // else epsilon (do nothing)
+}
+
+// F → ( E ) | id
+void F() {
+    if (input[i] == '(') {
+        match('(');
+        E();
+        match(')');
+    }
+    else if (isalpha(input[i])) {   // id
+        i++;
+    }
+    else {
+        error();
+    }
+}
+
+int main() {
+    printf("Enter an expression: ");
+    scanf("%s", input);
+
+    E();
+
+    if (input[i] == '\0')
+        printf("\nExpression is valid.\n");
+    else
+        error();
+
+    return 0;
+}
